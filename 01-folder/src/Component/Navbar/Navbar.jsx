@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from 'react'
 import './Navbar.css'
 import logo from '../Assets/logo.png'
-import cart_icon from '../assets/cart_icon.png'
+import cart_icon from '../assets/images/cart_icon.png'
 import { Link } from 'react-router-dom'
 import { Shopcontext } from '../../Context/Shopcontext'
 import nav_dropdown from '../Assets/nav_dropdown.png'
