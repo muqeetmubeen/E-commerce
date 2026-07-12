@@ -1,6 +1,9 @@
-const port = 4000;
+const port = process.env.PORT || 4000;
 
+require("dotenv").config();
 const express = require("express");
+const connectDB = require("./config/db")
+
 const app = express();
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
@@ -12,11 +15,13 @@ const { type } = require("os");
 
 
 
+
+connectDB();
+
+
 app.use(express.json());
 app.use(cors());
 
-// database connection
-mongoose.connect("mongodb+srv://e-commerce1:ecommerce123@ecommerce.879bs9h.mongodb.net/ecommerce");
 
 //api creation 
 app.get("/",(req,res)=>{
