@@ -11,9 +11,8 @@ const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 const { type } = require("os");
-
-
-
+const cloudinary = require("./config/cloudinary");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 
 connectDB();
@@ -30,31 +29,35 @@ app.get("/",(req,res)=>{
 
 // image storage engine
 
-const storage = multer.diskStorage({
-   destination:"./upload/images",
-   filename: (req,file,cb)=>{
-  
-    return cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
-  }
-  
-   
-})
 
 
-const upload = multer({storage:storage})
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "ecommerce-products",
+    allowed_formats: ["jpg", "jpeg", "png", "webp"],
+  },
+});
+
+const upload = multer({ storage });
 
 
 // creating upload endpoint for images
 app.use('/images',express.static('upload/images'))
 
-app.post("/upload",upload.single('product'),(req,res)=>{
-     res.json({
-       success:1,
-       image_url:`http://localhost:${port}/images/${req.file.filename}`
-     })
-     
-     
-})
+app.post("/upload", upload.single("product"), (req, res) => {
+  try {
+    res.json({
+      success: true,
+      image_url: req.file.path,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+});
 
 
 
