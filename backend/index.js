@@ -24,7 +24,7 @@ app.use(cors());
 
 //api creation 
 app.get("/",(req,res)=>{
-   res.send("Express app is running ")
+   res.send("Backend app is running ")
 })
 
 // image storage engine
