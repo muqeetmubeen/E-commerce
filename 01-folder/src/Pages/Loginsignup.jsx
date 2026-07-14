@@ -42,22 +42,6 @@ const Loginsinup = () => {
    setFormData({...formData,[e.target.name]:e.target.value})
   }
 
- /* const signup = async ()=>{
-   console.log("signup function excuted ",formData);
-   let responseData;
-   await fetch("http://localhost:4000/signup",{
-    method:"POST",
-    headers:{
-        Accept:'application/form-data',
-        'Content-Type':'application/json',
-      },
-      body:JSON.stringify(formData)
-    }).then((response)=> response.json()).then((data)=>responseData)
-    if(responseData.success){
-      localStorage.setItem('auth-token',responseData.token);
-      window.location.replace('/');
-    }
-   }*/
   const signup = async () => {
   console.log("signup function executed", formData);
 
