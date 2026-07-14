@@ -20,12 +20,12 @@ const Shopcontextprovider = (props)=>{
    const [cartItem, setCartItem] = useState(getDefaultcart())
    
    useEffect(()=>{
-     fetch('http://localhost:4000/allproducts')
+     fetch('https://e-commerce-tan-iota-49.vercel.app/allproducts')
      .then((response)=>response.json())
     .then((data)=>setAll_Product(data));
     
      if (localStorage.getItem('auth-token')) {
-         fetch('http://localhost:4000/getcart',{
+         fetch('https://e-commerce-tan-iota-49.vercel.app/getcart',{
        method:'POST',
        headers:{
          Accept:'application/form-data',
@@ -57,7 +57,7 @@ const addTocart = (itemId) => {
     [itemId]: (prev[itemId] || 0) + 1,
   }));
 
-  fetch('http://localhost:4000/addtocart', {
+  fetch('https://e-commerce-tan-iota-49.vercel.app/addtocart', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -70,7 +70,7 @@ const addTocart = (itemId) => {
      const removeFromcart =(itemId) =>{
      setCartItem((prev)=>({...prev,[itemId]:prev[itemId]-1}))
      if (localStorage.getItem('auth-token')) {
-      fetch('http://localhost:4000/removefromcart',{
+      fetch('https://e-commerce-tan-iota-49.vercel.app/removefromcart',{
        method:'POST',
        headers:{
          Accept:'application/form-data',

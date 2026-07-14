@@ -15,7 +15,7 @@ const Loginsinup = () => {
    console.log("login function is executed",formData);
      let responseData;
 
-  await fetch("http://localhost:4000/login", {
+  await fetch("https://e-commerce-tan-iota-49.vercel.app/login", {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -63,7 +63,7 @@ const Loginsinup = () => {
 
   let responseData;
 
-  await fetch("http://localhost:4000/signup", {
+  await fetch("https://e-commerce-tan-iota-49.vercel.app/signup", {
     method: "POST",
     headers: {
       Accept: "application/json",
